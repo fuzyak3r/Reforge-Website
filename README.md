@@ -14,7 +14,6 @@ A modern, responsive website for the Counter-Strike: Reforge community project. 
 
 ## 📋 Pages
 
-- Home page with hero section
 - Community section
 - Download section
 - Rules page
@@ -44,7 +43,6 @@ Join our community:
 
 ## 📋 Страницы
 
-- Главная страница с героическим разделом
 - Раздел сообщества
 - Раздел загрузок
 - Страница правил
