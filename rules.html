@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правила | CS: Reforge</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        .rules-container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(26, 26, 36, 0.7), rgba(18, 18, 28, 0.7));
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(209, 212, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+        
+        .rules-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .rule-section {
+            width: 100%;
+            position: relative;
+            padding: 30px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(209, 212, 255, 0.05) 0%, rgba(138, 143, 255, 0.03) 100%);
+            border: 1px solid rgba(209, 212, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .rule-section:hover {
+            box-shadow: 0 5px 20px rgba(138, 143, 255, 0.1);
+            transform: translateY(-2px);
+            border-color: rgba(209, 212, 255, 0.2);
+        }
+        
+        .rule-section h3 {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(209, 212, 255, 0.1);
+            color: #d1d4ff;
+        }
+        
+        .rule-section h3 i {
+            margin-right: 15px;
+            font-size: 22px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(209, 212, 255, 0.1), rgba(138, 143, 255, 0.15));
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .rule-section-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .rule-list-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .rule-list-column {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .rule-list {
+            padding-left: 25px;
+            margin: 0;
+        }
+        
+        .rule-list li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 8px;
+            font-size: 16px;
+        }
+        
+        .rule-list li::before {
+            content: "";
+            position: absolute;
+            left: -18px;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d1d4ff, #8a8fff);
+        }
+        
+        .rule-list.ordered {
+            counter-reset: rule-counter;
+        }
+        
+        .rule-list.ordered li {
+            counter-increment: rule-counter;
+            padding-left: 0;
+        }
+        
+        .rule-list.ordered li::before {
+            display: none;
+        }
+        
+        .rule-list.ordered li::marker {
+            color: #8a8fff;
+            font-weight: 700;
+        }
+        
+        .rule-warning, .rule-note {
+            margin-top: 20px;
+            padding: 15px 20px;
+            font-size: 15px;
+            color: rgba(209, 212, 255, 0.9);
+            border-radius: 8px;
+        }
+        
+        .rule-warning {
+            background: rgba(244, 67, 54, 0.1);
+            border-left: 4px solid #F44336;
+        }
+        
+        .rule-note {
+            background: rgba(33, 150, 243, 0.1);
+            border-left: 4px solid #2196F3;
+        }
+        
+        .sanctions-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .sanction-item {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+            background: rgba(209, 212, 255, 0.05);
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .sanction-item:hover {
+            background: rgba(209, 212, 255, 0.08);
+            transform: translateY(-3px);
+        }
+        
+        .sanction-icon {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #8a8fff;
+        }
+        
+        .sanction-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        
+        .sanction-desc {
+            font-size: 14px;
+            color: rgba(209, 212, 255, 0.7);
+        }
+        
+        .rule-section-intro {
+            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        @media screen and (max-width: 992px) {
+            .rule-list-column {
+                min-width: 260px;
+            }
+            
+            .sanction-item {
+                min-width: 180px;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .rule-section {
+                padding: 20px;
+            }
+            
+            .rule-section h3 {
+                font-size: 20px;
+            }
+            
+            .rule-section h3 i {
+                font-size: 18px;
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+            }
+            
+            .rule-list-wrapper {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .rule-list-column {
+                width: 100%;
+            }
+            
+            .sanction-item {
+                flex: 0 0 calc(50% - 10px);
+                min-width: auto;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .sanction-item {
+                flex: 0 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/logo.png" alt="CS: Reforge" class="logo-image">
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html#home">Главная</a></li>
+                    <li><a href="index.html#community">Сообщество</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content-container">
+        <h1 class="content-title">Правила сообщества CS: Reforge</h1>
+        
+        <div class="rules-container fade-in">
+            <div class="rules-list">
+                <div class="rule-section">
+                    <h3><i class="fas fa-gavel"></i> Общие правила</h3>
+                    <div class="rule-section-content">
+                        <div class="rule-section-intro">
+                            <p>Для обеспечения комфортной и честной игры, пожалуйста, соблюдайте следующие правила:</p>
+                        </div>
+                        <div class="rule-list-wrapper">
+                            <div class="rule-list-column">
+                                <ol class="rule-list ordered">
+                                    <li>Уважайте других игроков и администрацию проекта.</li>
+                                    <li>Запрещено использование читов, скриптов и любого стороннего ПО, дающего нечестное преимущество.</li>
+                                    <li>Запрещены оскорбления, дискриминация, угрозы или любые формы токсичного поведения.</li>
+                                    <li>Запрещена реклама сторонних ресурсов без согласования с администрацией.</li>
+                                </ol>
+                            </div>
+                            <div class="rule-list-column">
+                                <ol class="rule-list ordered" start="5">
+                                    <li>Запрещено распространение вредоносных ссылок, файлов или иного контента.</li>
+                                    <li>Запрещен обход ограничений и блокировок.</li>
+                                    <li>Запрещена публикация персональных данных других участников сообщества.</li>
+                                    <li>Запрещены любые действия, нарушающие законодательство.</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="rule-warning">
+                            <i class="fas fa-exclamation-triangle"></i> Внимание: Незнание правил не освобождает от ответственности. Пожалуйста, внимательно ознакомьтесь с ними перед началом игры.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rule-section">
+                    <h3><i class="fas fa-server"></i> Правила серверов</h3>
+                    <div class="rule-section-content">
+                        <div class="rule-list-wrapper">
+                            <div class="rule-list-column">
+                                <ul class="rule-list">
+                                    <li>Запрещено использование микрофона не по назначению (музыка, посторонние шумы).</li>
+                                    <li>Запрещено умышленное вредительство своей команде.</li>
+                                    <li>Запрещено злоупотребление багами карт или игры.</li>
+                                    <li>Запрещено намеренное затягивание раундов.</li>
+                                </ul>
+                            </div>
+                            <div class="rule-list-column">
+                                <ul class="rule-list">
+                                    <li>Запрещено использование сторонних программ для получения преимущества.</li>
+                                    <li>Запрещено умышленно занижать свой ранг для игры с более слабыми противниками.</li>
+                                    <li>Запрещено умышленно покидать матчи соревновательного режима.</li>
+                                    <li>Запрещено выдавать себя за администрацию проекта.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="rule-note">
+                            <i class="fas fa-info-circle"></i> Примечание: На каждом сервере могут действовать дополнительные правила. Пожалуйста, ознакомьтесь с ними при входе на конкретный сервер.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rule-section">
+                    <h3><i class="fab fa-discord"></i> Правила Discord сервера</h3>
+                    <div class="rule-section-content">
+                        <div class="rule-list-wrapper">
+                            <div class="rule-list-column">
+                                <ul class="rule-list">
+                                    <li>Общение должно вестись в соответствующих каналах.</li>
+                                    <li>Запрещен спам, флуд и многократные повторения сообщений.</li>
+                                    <li>Запрещено загружать NSFW-контент в любом виде.</li>
+                                    <li>Запрещено упоминание участников без веской причины.</li>
+                                </ul>
+                            </div>
+                            <div class="rule-list-column">
+                                <ul class="rule-list">
+                                    <li>Запрещено использовать провокационные аватары и никнеймы.</li>
+                                    <li>Запрещена реклама сторонних ресурсов и сервисов без разрешения администрации.</li>
+                                    <li>Запрещено злоупотребление командами ботов.</li>
+                                    <li>Запрещено создавать дубликаты каналов для обхода модерации.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rule-section">
+                    <h3><i class="fas fa-ban"></i> Санкции за нарушения</h3>
+                    <div class="rule-section-content">
+                        <p>В зависимости от тяжести нарушения и истории нарушений могут применяться следующие санкции:</p>
+                        
+                        <div class="sanctions-grid">
+                            <div class="sanction-item">
+                                <div class="sanction-icon">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <div class="sanction-title">Предупреждение</div>
+                                <div class="sanction-desc">За мелкие или первые нарушения</div>
+                            </div>
+                            
+                            <div class="sanction-item">
+                                <div class="sanction-icon">
+                                    <i class="fas fa-microphone-slash"></i>
+                                </div>
+                                <div class="sanction-title">Временный мут</div>
+                                <div class="sanction-desc">Ограничение коммуникаций</div>
+                            </div>
+                            
+                            <div class="sanction-item">
+                                <div class="sanction-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="sanction-title">Временный бан</div>
+                                <div class="sanction-desc">Блокировка на 1-7 дней</div>
+                            </div>
+                            
+                            <div class="sanction-item">
+                                <div class="sanction-icon">
+                                    <i class="fas fa-ban"></i>
+                                </div>
+                                <div class="sanction-title">Постоянный бан</div>
+                                <div class="sanction-desc">Для серьезных нарушений</div>
+                            </div>
+                        </div>
+                        
+                        <p class="rule-note" style="margin-top: 20px;">
+                            <i class="fas fa-cog"></i> Администрация оставляет за собой право изменять правила без предварительного уведомления.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.png" alt="CS: Reforge" class="footer-logo-image">
+                </div>
+                <div class="footer-links">
+                    <a href="rules.html">Правила</a>
+                    <a href="support.html">Поддержка</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Counter-Strike: Reforge. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

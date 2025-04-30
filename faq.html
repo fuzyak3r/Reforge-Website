@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | CS: Reforge</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(209, 212, 255, 0.1);
+            background: linear-gradient(135deg, rgba(209, 212, 255, 0.03) 0%, rgba(138, 143, 255, 0.04) 100%);
+        }
+
+        .faq-question {
+            padding: 15px 50px 15px 20px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #d1d4ff;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .faq-question:after {
+            content: '\f107';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+        }
+
+        .faq-question.active {
+            background: linear-gradient(135deg, rgba(209, 212, 255, 0.07) 0%, rgba(138, 143, 255, 0.08) 100%);
+        }
+
+        .faq-question.active:after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            transition: all 0.3s ease;
+            color: rgba(209, 212, 255, 0.8);
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 0 20px 20px;
+        }
+
+        .faq-answer p, .faq-answer ul, .faq-answer ol {
+            margin-bottom: 10px;
+        }
+
+        .faq-answer ul, .faq-answer ol {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/logo.png" alt="CS: Reforge" class="logo-image">
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html#home">Главная</a></li>
+                    <li><a href="index.html#community">Сообщество</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content-container">
+        <h1 class="content-title">Часто задаваемые вопросы</h1>
+        
+        <div class="content-section">
+            <h3>Общие вопросы</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question">Что такое CS: Reforge?</div>
+                <div class="faq-answer">
+                    <p>CS: Reforge - это сообщество для любителей классического CS:GO. Мы предоставляем собственные сервера с уникальными особенностями, а также удобный лаунчер для подключения и управления игровыми файлами.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Является ли CS: Reforge официальным продуктом Valve?</div>
+                <div class="faq-answer">
+                    <p>Нет, CS: Reforge - это фанатский проект, созданный энтузиастами. Мы не связаны с компанией Valve Corporation и CS:GO является зарегистрированной торговой маркой Valve Corporation.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Нужно ли иметь CS:GO для игры на ваших серверах?</div>
+                <div class="faq-answer">
+                    <p>Да, для игры на наших серверах вам нужна копия Counter-Strike: Global Offensive которую можно установить из нашего лаунчера.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h3>Лаунчер и подключение</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question">Что такое лаунчер CS: Reforge?</div>
+                <div class="faq-answer">
+                    <p>Наш лаунчер - это программа, которая упрощает процесс подключения к серверам, установки карт, игровых файлов и серверных материалов.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Безопасно ли использовать лаунчер CS: Reforge?</div>
+                <div class="faq-answer">
+                    <p>Да, наш лаунчер полностью безопасен. Он не модифицирует системные файлы игры и не содержит вредоносного кода. Вы можете проверить исходный код на нашем GitHub репозитории.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Как подключиться к серверам без лаунчера?</div>
+                <div class="faq-answer">
+                    <p>Вы не можете подключиться к нашим серверам напрямую через консоль CS:GO, безопасное подключение возможно только через наш лаунчер.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Нужен ли мне мощный компьютер для игры?</div>
+                <div class="faq-answer">
+                    <p>Наши сервера используют стандартные требования CS:GO, так что если ваш компьютер запускает оригинальную игру, то проблем быть не должно.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h3>Сообщество и участие</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question">Как присоединиться к сообществу?</div>
+                <div class="faq-answer">
+                    <p>Присоединиться к нашему сообществу очень просто - вступите в наш Discord сервер, где вы найдете все необходимые инструкции, новости и возможность общаться с другими игроками.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Проводите ли вы турниры?</div>
+                <div class="faq-answer">
+                    <p>Да, мы организуем как случайные матчи, так и официальные турниры с призами. Расписание можно найти на нашем Discord сервере.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Могу ли я добавить свою карту на ваши сервера?</div>
+                <div class="faq-answer">
+                    <p>Конечно! Мы поддерживаем пользовательский контент и с радостью рассмотрим ваши карты. Отправьте информацию о своей карте через форму в Discord, и после проверки на соответствие качеству и правилам, она может быть добавлена в нашу коллекцию.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Как я могу поддержать проект?</div>
+                <div class="faq-answer">
+                    <p>Есть несколько способов поддержать проект: участвовать в развитии сообщества, создавать контент, помогать новичкам или внести финансовый вклад. Подробнее о поддержке проекта можно узнать в Discord.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.png" alt="CS: Reforge" class="footer-logo-image">
+                </div>
+                <div class="footer-links">
+                    <a href="rules.html">Правила</a>
+                    <a href="support.html">Поддержка</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Counter-Strike: Reforge. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    
+                    const answer = this.nextElementSibling;
+                    answer.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

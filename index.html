@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter-Strike: Reforge</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="images/logo.png" alt="CS: Reforge" class="logo-image">
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#community">Сообщество</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="loading-overlay" id="loading-overlay">
+            <div class="spinner"></div>
+        </div>
+        <video id="video-background" autoplay loop muted playsinline>
+            <source src="https://remo.uk.to/fragmovie.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        <div class="container hero-content">
+            <h1>Counter-Strike: Reforge</h1>
+            <p>Сообщество игроков CS:GO. Уникальные сервера и карты. Присоединяйтесь!</p>
+            <a href="#download" class="btn">Скачать лаунчер</a>
+        </div>
+    </section>
+
+    <section id="community" class="community-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Сообщество</h2>
+            <div class="community-content">
+                <div class="community-text fade-in">
+                    <p>Присоединяйтесь к нашему активному сообществу. Мы регулярно проводим матчи и турниры, где вы можете проявить свои навыки.</p>
+                </div>
+                <div class="community-links fade-in">
+                    <a href="https://discord.gg/reforge" class="community-link">
+                        <i class="fab fa-discord"></i> Discord
+                    </a>
+                    <a href="https://youtube.com/csreforge" class="community-link">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Скачать лаунчер</h2>
+            <div style="text-align: center;" class="fade-in">
+                <p style="max-width: 700px; margin: 0 auto 30px;">Наш лаунчер позволяет легко подключаться к серверам Reforge, устанавливать карты и следить за расписанием матчей.</p>
+                <a href="https://reforge.cs/download" class="btn" style="font-size: 20px; padding: 15px 40px;">
+                    <i class="fas fa-download" style="margin-right: 10px;"></i>
+                    Скачать CS: Reforge Launcher
+                </a>
+                <p style="margin-top: 15px; font-size: 14px; color: rgba(209, 212, 255, 0.6);">Версия 1.2.5 | Обновлено: 29.04.2025</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="images/logo.png" alt="CS: Reforge" class="footer-logo-image">
+            </div>
+            <div class="footer-links">
+                <a href="rules.html">Правила</a>
+                <a href="support.html">Поддержка</a>
+                <a href="faq.html">FAQ</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Counter-Strike: Reforge. Все права защищены.
+        </div>
+    </div>
+</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
