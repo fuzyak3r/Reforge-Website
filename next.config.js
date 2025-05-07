@@ -1,27 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Отключаем строгий режим маршрутизации,
+  // чтобы статические файлы обрабатывались корректно
+  trailingSlash: false,
+  // Настраиваем обработку статических файлов
   async rewrites() {
     return [
+      // Сначала проверяем API маршруты
       {
-        source: '/api/auth/steam',
-        destination: '/api/auth/login'
+        source: '/api/:path*',
+        destination: '/api/:path*'
       },
+      // Затем все остальные пути обрабатываем как статические файлы
+      {
+        source: '/:path*',
+        destination: '/:path*'
+      }
     ];
-  },
-  // Настройка сервисных воркеров
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      // Игнорируем модули сервера в клиентском коде
-      config.resolve.fallback = {
-        fs: false,
-        net: false,
-        tls: false,
-      };
-    }
-
-    return config;
-  },
+  }
 }
 
 module.exports = nextConfig;
