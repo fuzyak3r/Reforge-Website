@@ -6,7 +6,6 @@
     <title>Counter-Strike: Reforge</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
-    <link href="css/auth.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -16,33 +15,9 @@
                     <img src="images/logo.png" alt="CS: Reforge" class="logo-image">
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#home" class="active">Главная</a></li>
-                    <li><a href="cases.html" class="auth-required" style="display: none;">Кейсы</a></li>
-                    <li><a href="inventory.html" class="auth-required" style="display: none;">Инвентарь</a></li>
+                    <li><a href="#home">Главная</a></li>
                     <li><a href="#community">Сообщество</a></li>
                 </ul>
-                <div class="user-section no-auth-required">
-                    <a href="/api/auth/steam" class="steam-login-button">
-                        <img src="https://community.cloudflare.steamstatic.com/public/images/signinthroughsteam/sits_02.png" alt="Войти через Steam" height="40">
-                    </a>
-                </div>
-                <div class="user-section auth-required" style="display: none;">
-                    <div class="user-profile">
-                        <div class="user-avatar-container">
-                            <img class="user-avatar" src="" alt="Аватар">
-                        </div>
-                        <div class="user-info">
-                            <div class="user-name"></div>
-                            <div class="points-container">
-                                <span class="points-label">Очки:</span>
-                                <span class="user-points">0</span>
-                            </div>
-                        </div>
-                        <button class="logout-button" onclick="logout()">
-                            <i class="fas fa-sign-out-alt"></i>
-                        </button>
-                    </div>
-                </div>
                 <div class="menu-toggle">
                     <span></span>
                     <span></span>
@@ -63,39 +38,7 @@
         <div class="container hero-content">
             <h1>Counter-Strike: Reforge</h1>
             <p>Сообщество игроков CS:GO. Уникальные сервера и карты. Присоединяйтесь!</p>
-            <div class="hero-buttons">
-                <a href="#download" class="btn no-auth-required">Скачать лаунчер</a>
-                <a href="cases.html" class="btn auth-required" style="display: none;">Открыть кейсы</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="features-section fade-in">
-        <div class="container">
-            <h2 class="section-title">Возможности</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <h3>Игровые награды</h3>
-                    <p>Получайте очки за игровые достижения и убийства прямо в CS:GO</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-box"></i>
-                    </div>
-                    <h3>Открытие кейсов</h3>
-                    <p>Тратьте заработанные очки на открытие кейсов с уникальными скинами</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-box-open"></i>
-                    </div>
-                    <h3>Инвентарь</h3>
-                    <p>Все ваши предметы хранятся в облачном инвентаре и доступны в игре</p>
-                </div>
-            </div>
+            <a href="#download" class="btn">Скачать лаунчер</a>
         </div>
     </section>
 
@@ -104,13 +47,13 @@
             <h2 class="section-title fade-in">Сообщество</h2>
             <div class="community-content">
                 <div class="community-text fade-in">
-                    <p>Присоединяйтесь к нашему активному сообществу. Мы регулярно проводим матчи и турниры, где вы можете показать свое мастерство и получить награды.</p>
+                    <p>Присоединяйтесь к нашему активному сообществу. Мы регулярно проводим матчи и турниры, где вы можете проявить свои навыки.</p>
                 </div>
                 <div class="community-links fade-in">
-                    <a href="https://dsc.gg/reforgeproject" class="community-link">
+                    <a href="https://discord.gg/reforge" class="community-link">
                         <i class="fab fa-discord"></i> Discord
                     </a>
-                    <a href="https://www.youtube.com/@csreforge" class="community-link">
+                    <a href="https://youtube.com/csreforge" class="community-link">
                         <i class="fab fa-youtube"></i> YouTube
                     </a>
                 </div>
@@ -122,7 +65,7 @@
         <div class="container">
             <h2 class="section-title fade-in">Скачать лаунчер</h2>
             <div style="text-align: center;" class="fade-in">
-                <p style="max-width: 700px; margin: 0 auto 30px;">Наш лаунчер позволяет легко подключаться к серверам Reforge, устанавливать необходимые файлы и автоматически обновлять контент.</p>
+                <p style="max-width: 700px; margin: 0 auto 30px;">Наш лаунчер позволяет легко подключаться к серверам Reforge, устанавливать карты и следить за расписанием матчей.</p>
                 <a href="https://reforge.cs/download" class="btn" style="font-size: 20px; padding: 15px 40px;">
                     <i class="fas fa-download" style="margin-right: 10px;"></i>
                     Скачать CS: Reforge Launcher
@@ -133,25 +76,23 @@
     </section>
 
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="images/logo.png" alt="CS: Reforge" class="footer-logo-image">
-                </div>
-                <div class="footer-links">
-                    <a href="rules.html">Правила</a>
-                    <a href="support.html">Поддержка</a>
-                    <a href="faq.html">FAQ</a>
-                </div>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="images/logo.png" alt="CS: Reforge" class="footer-logo-image">
             </div>
-            <div class="copyright">
-                &copy; 2025 Counter-Strike: Reforge. Все права защищены.
+            <div class="footer-links">
+                <a href="rules.html">Правила</a>
+                <a href="support.html">Поддержка</a>
+                <a href="faq.html">FAQ</a>
             </div>
         </div>
-    </footer>
+        <div class="copyright">
+            &copy; 2025 Counter-Strike: Reforge. Все права защищены.
+        </div>
+    </div>
+</footer>
 
     <script src="script.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/api.js"></script>
 </body>
 </html>
