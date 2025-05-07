@@ -1,31 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // Конфигурация для обслуживания статических файлов
   async rewrites() {
     return [
       {
-        source: '/api/auth/steam',
-        destination: '/api/auth/login'
+        source: '/:path*',
+        destination: '/:path*',
       },
-      {
-        source: '/api/auth/steam/return',
-        destination: '/api/auth/steam/return'
-      }
     ];
   },
-  // Конфигурация для статических файлов
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-    ];
+  // Включение статического экспорта, если у вас в основном статический сайт
+  output: 'export',
+  // Отключаем строгую проверку изображений для статических HTML
+  images: {
+    unoptimized: true,
   },
 }
 

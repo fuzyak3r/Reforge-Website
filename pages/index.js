@@ -1,12 +1,10 @@
-// Перенаправляем на основной HTML-файл
-export default function Home() {
-  return null;
-}
+import { useEffect } from 'react';
 
-// Серверный рендеринг для перенаправления на HTML-файл
-export async function getServerSideProps({ res }) {
-  res.writeHead(301, { Location: '/index.html' });
-  res.end();
+export default function Home() {
+  useEffect(() => {
+    // Перенаправить на основной HTML-файл
+    window.location.href = '/index.html';
+  }, []);
   
-  return { props: {} };
+  return <div>Redirecting...</div>;
 }
