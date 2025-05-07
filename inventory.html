@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инвентарь - Counter-Strike: Reforge</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <link href="css/inventory.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="images/logo.png" alt="CS: Reforge" class="logo-image">
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="cases.html">Кейсы</a></li>
+                    <li><a href="inventory.html" class="active">Инвентарь</a></li>
+                    <li><a href="#community">Сообщество</a></li>
+                </ul>
+                <div class="user-section no-auth-required">
+                    <a href="/api/auth/steam" class="steam-login-button">
+                        <img src="https://community.cloudflare.steamstatic.com/public/images/signinthroughsteam/sits_02.png" alt="Войти через Steam" height="40">
+                    </a>
+                </div>
+                <div class="user-section auth-required" style="display: none;">
+                    <div class="user-profile">
+                        <div class="user-avatar-container">
+                            <img class="user-avatar" src="" alt="Аватар">
+                        </div>
+                        <div class="user-info">
+                            <div class="user-name"></div>
+                            <div class="points-container">
+                                <span class="points-label">Очки:</span>
+                                <span class="user-points">0</span>
+                            </div>
+                        </div>
+                        <button class="logout-button" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="inventory-hero">
+        <div class="video-overlay"></div>
+        <div class="container hero-content">
+            <h1>Ваш инвентарь</h1>
+            <p>Все полученные предметы хранятся здесь</p>
+        </div>
+    </section>
+
+    <section class="auth-check-section no-auth-required">
+        <div class="container">
+            <div class="auth-prompt">
+                <div class="auth-prompt-content">
+                    <h2>Требуется авторизация</h2>
+                    <p>Для просмотра инвентаря необходимо войти через Steam</p>
+                    <a href="/api/auth/steam" class="btn">
+                        <i class="fab fa-steam"></i> Войти через Steam
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="inventory-section auth-required" style="display: none;">
+        <div class="container">
+            <div class="inventory-tools fade-in">
+                <div class="inventory-search">
+                    <input type="text" placeholder="Поиск по названию..." id="inventorySearch">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="inventory-filter">
+                    <select id="rarityFilter">
+                        <option value="all">Все редкости</option>
+                        <option value="common">Обычные</option>
+                        <option value="uncommon">Необычные</option>
+                        <option value="rare">Редкие</option>
+                        <option value="mythical">Мифические</option>
+                        <option value="legendary">Легендарные</option>
+                        <option value="ancient">Древние</option>
+                    </select>
+                    <select id="typeFilter">
+                        <option value="all">Все типы</option>
+                        <option value="weapon">Оружие</option>
+                        <option value="knife">Нож</option>
+                        <option value="gloves">Перчатки</option>
+                        <option value="sticker">Наклейка</option>
+                    </select>
+                    <select id="sortOrder">
+                        <option value="newest">Сначала новые</option>
+                        <option value="oldest">Сначала старые</option>
+                        <option value="rarity">По редкости</option>
+                        <option value="name">По названию</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="inventory-empty fade-in" style="display: none;">
+                <div class="empty-icon">
+                    <i class="fas fa-box-open"></i>
+                </div>
+                <h3>Ваш инвентарь пуст</h3>
+                <p>Откройте кейсы, чтобы получить предметы</p>
+                <a href="cases.html" class="btn">Перейти к кейсам</a>
+            </div>
+            
+            <div class="inventory-grid fade-in">
+                <!-- Предметы будут добавлены с помощью JavaScript -->
+                <div class="inventory-loading">
+                    <div class="spinner"></div>
+                    <p>Загрузка инвентаря...</p>
+                </div>
+            </div>
+            
+            <div class="inventory-pagination fade-in" style="display: none;">
+                <button class="pagination-btn" data-page="prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="pagination-info">
+                    Страница <span id="currentPage">1</span> из <span id="totalPages">1</span>
+                </div>
+                <button class="pagination-btn" data-page="next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно с информацией о предмете -->
+    <div id="itemModal" class="item-modal">
+        <div class="item-modal-content">
+            <div class="item-modal-header">
+                <h3 class="item-modal-title">Информация о предмете</h3>
+                <span class="close-modal"><i class="fas fa-times"></i></span>
+            </div>
+            <div class="item-modal-body">
+                <div class="item-showcase">
+                    <div class="item-rarity-overlay modal-rarity"></div>
+                    <img src="" alt="" class="modal-item-image">
+                </div>
+                <div class="item-details">
+                    <h4 class="modal-item-name"></h4>
+                    <p class="modal-item-rarity"></p>
+                    <p class="modal-item-type"></p>
+                    <div class="item-acquisition">
+                        <span>Получено:</span>
+                        <span class="modal-item-date"></span>
+                    </div>
+                    <div class="item-source">
+                        <span>Источник:</span>
+                        <span class="modal-item-source"></span>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <button class="btn view-in-game-btn">
+                        <i class="fas fa-gamepad"></i> Просмотр в игре
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.png" alt="CS: Reforge" class="footer-logo-image">
+                </div>
+                <div class="footer-links">
+                    <a href="rules.html">Правила</a>
+                    <a href="support.html">Поддержка</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Counter-Strike: Reforge. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/inventory.js"></script>
+</body>
+</html>

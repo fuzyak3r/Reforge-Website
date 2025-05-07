@@ -1,0 +1,405 @@
+/* CSS для страницы инвентаря */
+
+.inventory-hero {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 80px;
+    background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.9)), url("../images/inventory-bg.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.inventory-section {
+    padding: 60px 0;
+    position: relative;
+}
+
+.inventory-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.inventory-search {
+    position: relative;
+    width: 300px;
+}
+
+.inventory-search input {
+    width: 100%;
+    padding: 12px 20px 12px 40px;
+    background: rgba(209, 212, 255, 0.05);
+    border: 1px solid rgba(209, 212, 255, 0.1);
+    color: #d1d4ff;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.inventory-search input:focus {
+    outline: none;
+    border-color: rgba(138, 143, 255, 0.3);
+    background: rgba(209, 212, 255, 0.08);
+    box-shadow: 0 0 15px rgba(138, 143, 255, 0.1);
+}
+
+.inventory-search i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(209, 212, 255, 0.5);
+}
+
+.inventory-filter {
+    display: flex;
+    gap: 15px;
+}
+
+.inventory-filter select {
+    padding: 10px 15px;
+    background: rgba(209, 212, 255, 0.05);
+    border: 1px solid rgba(209, 212, 255, 0.1);
+    color: #d1d4ff;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="6" viewBox="0 0 12 6"><path fill="%23D1D4FF" d="M0 0l6 6 6-6z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 35px;
+}
+
+.inventory-filter select:focus {
+    outline: none;
+    border-color: rgba(138, 143, 255, 0.3);
+    background-color: rgba(209, 212, 255, 0.08);
+    box-shadow: 0 0 15px rgba(138, 143, 255, 0.1);
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.inventory-item {
+    background: linear-gradient(135deg, rgba(209, 212, 255, 0.05) 0%, rgba(138, 143, 255, 0.07) 100%);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border: 1px solid rgba(209, 212, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.inventory-item:hover {
+    transform: translateY(-5px);
+    border-color: rgba(209, 212, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, rgba(209, 212, 255, 0.07) 0%, rgba(138, 143, 255, 0.1) 100%);
+}
+
+.item-rarity-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.inventory-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    transition: transform 0.4s ease;
+}
+
+.inventory-item:hover img {
+    transform: scale(1.08) translateY(-5px);
+}
+
+.inventory-item-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #d1d4ff;
+    text-align: center;
+    margin-bottom: 5px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.inventory-item-rarity {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.rarity-common { color: #b0c3d9; }
+.rarity-uncommon { color: #5e98d9; }
+.rarity-rare { color: #4b69ff; }
+.rarity-mythical { color: #8847ff; }
+.rarity-legendary { color: #d32ce6; }
+.rarity-ancient { color: #eb4b4b; }
+
+.inventory-item-date {
+    font-size: 12px;
+    color: rgba(209, 212, 255, 0.5);
+}
+
+.inventory-loading, .inventory-empty {
+    grid-column: 1 / -1;
+    padding: 50px;
+    text-align: center;
+}
+
+.inventory-empty {
+    background: linear-gradient(135deg, rgba(209, 212, 255, 0.03) 0%, rgba(138, 143, 255, 0.05) 100%);
+    border-radius: 15px;
+    padding: 60px 20px;
+    border: 1px dashed rgba(209, 212, 255, 0.2);
+}
+
+.empty-icon {
+    font-size: 60px;
+    color: rgba(209, 212, 255, 0.3);
+    margin-bottom: 20px;
+}
+
+.inventory-empty h3 {
+    font-size: 24px;
+    color: #d1d4ff;
+    margin-bottom: 15px;
+}
+
+.inventory-empty p {
+    color: rgba(209, 212, 255, 0.7);
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+.inventory-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    gap: 20px;
+}
+
+.pagination-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(209, 212, 255, 0.05);
+    color: #d1d4ff;
+    border: 1px solid rgba(209, 212, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.pagination-btn:hover {
+    background: rgba(209, 212, 255, 0.1);
+    border-color: rgba(209, 212, 255, 0.2);
+    color: #ffffff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.pagination-info {
+    color: rgba(209, 212, 255, 0.7);
+    font-size: 14px;
+}
+
+/* Модальное окно с предметом */
+.item-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.item-modal.active {
+    display: flex;
+}
+
+.item-modal-content {
+    background: linear-gradient(135deg, rgba(28, 28, 35, 0.95), rgba(18, 18, 24, 0.97));
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(209, 212, 255, 0.1);
+}
+
+.item-modal-header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(209, 212, 255, 0.1);
+}
+
+.item-modal-title {
+    color: #d1d4ff;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.close-modal {
+    color: rgba(209, 212, 255, 0.7);
+    font-size: 22px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #ffffff;
+}
+
+.item-modal-body {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item-showcase {
+    width: 250px;
+    height: 250px;
+    background: rgba(209, 212, 255, 0.03);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.modal-item-image {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+    z-index: 1;
+    animation: float 3s ease-in-out infinite;
+}
+
+.modal-rarity {
+    position: absolute;
+    inset: 0;
+    opacity: 0.07;
+    z-index: 0;
+}
+
+.item-details {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.modal-item-name {
+    font-size: 22px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.modal-item-rarity, .modal-item-type {
+    text-align: center;
+    margin-bottom: 15px;
+    color: rgba(209, 212, 255, 0.8);
+}
+
+.item-acquisition, .item-source {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: rgba(209, 212, 255, 0.7);
+    font-size: 14px;
+}
+
+.item-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.view-in-game-btn {
+    padding: 12px 25px;
+}
+
+/* Адаптив */
+@media screen and (max-width: 768px) {
+    .inventory-hero {
+        height: 300px;
+        margin-top: 70px;
+    }
+    
+    .inventory-tools {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .inventory-search {
+        width: 100%;
+    }
+    
+    .inventory-filter {
+        flex-direction: column;
+    }
+    
+    .inventory-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .inventory-item img {
+        height: 120px;
+    }
+    
+    .item-modal-body {
+        padding: 20px;
+    }
+    
+    .item-showcase {
+        width: 200px;
+        height: 200px;
+    }
+}
