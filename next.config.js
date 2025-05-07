@@ -1,20 +1,26 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Конфигурация для обслуживания статических файлов
   async rewrites() {
     return [
       {
-        source: '/:path*',
-        destination: '/:path*',
+        source: '/api/auth/steam',
+        destination: '/api/auth/login'
       },
     ];
   },
-  // Включение статического экспорта, если у вас в основном статический сайт
-  output: 'export',
-  // Отключаем строгую проверку изображений для статических HTML
-  images: {
-    unoptimized: true,
+  // Настройка сервисных воркеров
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // Игнорируем модули сервера в клиентском коде
+      config.resolve.fallback = {
+        fs: false,
+        net: false,
+        tls: false,
+      };
+    }
+
+    return config;
   },
 }
 
