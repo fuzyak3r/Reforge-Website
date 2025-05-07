@@ -3,15 +3,11 @@
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
-  "routes": [
-    { "src": "/api/auth/steam", "dest": "/api/auth/login.js" },
-    { "src": "/api/auth/steam/return", "dest": "/api/auth/steam/return.js" },
-    { "src": "/api/auth/user", "dest": "/api/auth/user.js" },
-    { "src": "/api/players", "dest": "/api/players.js" },
-    { "src": "/api/inventory", "dest": "/api/inventory.js" },
-    { "src": "/api/open-case", "dest": "/api/open-case.js" },
-    { "src": "/api/verify-player-data", "dest": "/api/verify-player-data.js" },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/$1" }
+  "outputDirectory": ".next",
+  "rewrites": [
+    { "source": "/api/auth/steam", "destination": "/api/auth/login" },
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|webp))", "destination": "/$1" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
